@@ -10,7 +10,7 @@ Also, it updates the console, to have more control on the database and the data,
 | Tasks | Files | Description |
 | ----- | ----- | ------ |
 | 0: Fork/clone/README/AUTHORS | [AIRBNB_CLONE_V2](https://github.com/IbrahimMurad/AirBnB_clone_v2) | Forking the project from the original author and edit README and AUTHORS files to my version |
-| 1: Pep8 | N/A | All code is pep8 compliant|
+| 1: Bug free | [/tests](https://github.com/IbrahimMurad/AirBnB_clone_v2/tree/master/tests) | Updating the unittests as the project gets more features and updates  |
 | 2: Unit Testing | [/tests](https://github.com/IbrahimMurad/AirBnB_clone_v2/tree/master/tests) | All class-defining modules are unittested |
 | 3. Make BaseModel | [/models/base_model.py](https://github.com/IbrahimMurad/AirBnB_clone_v2/blob/master/models/base_model.py) | Defines a parent class to be inherited by all model classes|
 | 4. Update BaseModel w/ kwargs | [/models/base_model.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/base_model.py) | Add functionality to recreate an instance of a class from a dictionary representation|
