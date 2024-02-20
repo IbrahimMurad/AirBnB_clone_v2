@@ -135,7 +135,10 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     try:
                         value = eval(value)
-                        kwargs[key] = value
+                        if value is int or value is float:
+                            kwargs[key] = value
+                        else:
+                            continue
                     except Exception:
                         continue
             new_instance = HBNBCommand.classes[_cls](**kwargs)
