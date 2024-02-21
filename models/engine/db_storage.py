@@ -65,5 +65,6 @@ all objects depending of the class name cls"""
         """create all tables in the database"""
         
         Base.metadata.create_all(self.__engine)
-        Session = orm.sessionmaker(bind=self.__engine, expire_on_commit=False)
-        self.__session = Session()
+        Session_factory = orm.sessionmaker(bind=self.__engine, expire_on_commit=False)
+        thread_safe_session = orm.scoped_session(Session_factory)
+        self.__session = thread_safe_session()
