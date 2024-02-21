@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
-from sqlalchemy import Column, String, ForeignKey, Integer, Float, orm
+from sqlalchemy import Column, String, ForeignKey, Integer, Float, orm, Table
 from models import storage
 from models.base_model import BaseModel, Base
 
@@ -23,13 +23,41 @@ class Place(BaseModel, Base):
     reviews = orm.relationship("Review", cascade="all, delete, delete-orphan",
                                backref="place")
 
+    place_amenity = Table('place_amenity', Base.metadata,
+    Column('place_id', String(60), ForeignKey('places.id'),
+           primary_key=True, nullable=False),
+    Column('amenity_id', String(60), ForeignKey('amenities.id'),
+           primary_key=True, nullable=False)
+)
+
+    amenities = orm.relationship("Amenity", secondary="place_amenity", viewonly=False)
+
     @property
     def reviews(self):
         """getter attribute that returns a list of Review instances
 with place_id equals to the current Place.id"""
-        from models.place import Place
+        from models.review import Review
         place_reviews = []
-        for rev in storage.all(Place).values():
+        for rev in storage.all(Review).values():
             if rev.place_id == self.id:
                 place_reviews.append(rev)
         return place_reviews
+
+    @property
+    def amenities(self):
+        """getter attribute that returns the list of Amenity instances
+based on the attribute amenity_ids that contains all Amenity.id linked to the Place"""
+        from models.amenity import Amenity
+        place_amenities = []
+        for amenity in storage.all(Amenity).values():
+            if amenity.place_id == self.id:
+                place_amenities.append(amenity)
+        return place_amenities
+
+    @amenities.setter
+    def amenities(self, value=None):
+        """setter attribute for amenities"""
+        from models.amenity import Amenity
+        if type(value) is Amenity:
+            if value.id not in self.amenity_ids:
+                self.amenity_ids.append(value.id)
