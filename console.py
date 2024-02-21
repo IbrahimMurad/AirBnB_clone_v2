@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
             for para in parameters:
                 key, _, value = para.partition('=')
                 if value[0] == '"':
-                    value = value[1:-1].replace('=', ' ').replace('"', '\\"')
+                    value = value[1:-1].replace('=', ' ')
                     kwargs[key] = value
                 else:
                     try:
