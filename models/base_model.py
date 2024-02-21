@@ -45,8 +45,8 @@ class BaseModel:
         """Returns a string representation of the instance"""
         dictionary = {}
         dictionary.update(self.__dict__)
-        if '_sa_instance_state' in dictionary.keys():
-            dictionary.pop('_sa_instance_state')
+        if '__class__' in dictionary.keys():
+            dictionary.pop('__class__')
         cls = (str(type(self)).split('.')[-1]).split('\'')[0]
         return '[{}] ({}) {}'.format(cls, self.id, dictionary)
 
