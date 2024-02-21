@@ -135,15 +135,14 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     try:
                         value = eval(value)
-                        if value is int or value is float:
+                        if type(value) is int or type(value) is float:
                             kwargs[key] = value
                         else:
                             continue
                     except Exception:
                         continue
             new_instance = HBNBCommand.classes[_cls](**kwargs)
-        storage.new(new_instance)
-        storage.save()
+        new_instance.save()
         print(new_instance.id)
         storage.save()
 
