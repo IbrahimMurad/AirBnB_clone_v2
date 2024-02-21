@@ -14,4 +14,8 @@ class User(BaseModel, Base):
     first_name = Column(String(128), nullable=False)
     last_name = Column(String(128), nullable=False)
 
-    places = orm.relationship("Place", cascade="all, delete", backref="user")
+    places = orm.relationship("Place", cascade="all, delete, delete-orphan"
+                              , backref="user")
+    
+    reviews = orm.relationship("Review", cascade="all, delete, delete-orphan"
+                              , backref="user")
