@@ -2,7 +2,7 @@
 CREATE DATABASE IF NOT EXISTS hbnb_dev_db;
 
 -- create a new user hbnb_dev in the localhost for AirBnB clone project
-CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost' IDENTIFIED BY 'hbnb_dev_pwd';
+CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost' IDENTIFIED BY 'HBNB_dev_pwd123';
 
 -- grant hbnb_dev all privileges on the database hbnb_dev_db
 GRANT ALL ON hbnb_dev_db.* TO 'hbnb_dev'@'localhost';
