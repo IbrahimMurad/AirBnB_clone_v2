@@ -20,7 +20,8 @@ class Place(BaseModel, Base):
     longitude = Column(Float, default=0)
     amenity_ids = []
 
-    reviews = orm.relationship("Review", cascade="all, delete", backref="place")
+    reviews = orm.relationship("Review", cascade="all, delete, delete-orphan",
+                               backref="place")
 
     @property
     def reviews(self):
