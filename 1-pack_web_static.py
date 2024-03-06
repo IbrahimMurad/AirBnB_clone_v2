@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This is a fabfile used for packing web_static folder"""
 
+
 def do_pack():
     """ Packes web_static into .tgz archive """
 
