@@ -15,4 +15,4 @@ def do_pack():
         current_moment.minute,
         current_moment.second
     )
-    local("tar -cvzf versions/{} web_static".format(arch_name))
+    local("tar -cvzf versions/{} web_static".format(arch_name), capture=False)
