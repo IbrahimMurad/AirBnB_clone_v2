@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """This is a fabfile used for packing web_static folder"""
-
+from fabric.api import local
 
 def do_pack():
     """ Packes web_static into .tgz archive """
