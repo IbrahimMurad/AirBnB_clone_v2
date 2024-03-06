@@ -3,8 +3,6 @@
 
 from sqlalchemy import Column, String, orm
 from models.base_model import BaseModel, Base
-from models.place import Place
-from models.review import Review
 
 class User(BaseModel, Base):
     """This class defines a user by various attributes"""
