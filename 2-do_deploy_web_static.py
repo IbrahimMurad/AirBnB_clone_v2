@@ -16,7 +16,7 @@ def do_deploy(archive_path):
 
     # path strings
     releases = "/data/web_static/releases"
-    arch_name = archive_path.rsplit('/', 1)[1].split('.')[0]
+    arch_name = archive_path.split('/')[-1].split('.')[0]
     full_path = "{}/{}".format(releases, arch_name)
 
     # transfering the archive to the servers
