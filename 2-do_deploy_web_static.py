@@ -1,18 +1,16 @@
 #!/usr/bin/python3
 """This is a fabfile used for distributes an archive to my web servers"""
+import os
 from fabric.api import put, run, env
 
 
 env.hosts = ['100.25.170.65', '54.172.165.136']
-env.user = 'ubuntu'
-env.ssh_config_path = '~/.ssh/school'
 
 
 def do_deploy(archive_path):
     """ distributes the .tgz archive of my web static\
  to my web servers"""
 
-    import os
     if not os.path.isfile(archive_path):
         return False
 
