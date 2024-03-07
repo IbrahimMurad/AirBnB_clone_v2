@@ -3,7 +3,7 @@
 from fabric.api import put, run, env
 
 
-env.hosts = ['100.25.170.165', '54.172.165.136']
+env.hosts = ['100.25.170.65', '54.172.165.136']
 env.user = 'ubuntu'
 env.ssh_config_path = '~/.ssh/school'
 
@@ -19,14 +19,14 @@ def do_deploy(archive_path):
     try:
         # path strings
         releases = "/data/web_static/releases"
-        _, arch_name = arch_name.rsplit('/', 1).partition('.')[0]
+        arch_name = archive_path.rsplit('/', 1)[1].split('.')[0]
 
         # transfering the archive to the servers
         put(local_path=archive_path, remote_path='/tmp/')
 
         # unpacking the archive in a new folder with the same name
         run("mkdir -p {}/{}/".format(releases, arch_name))
-        run("tar -xzf /tmp/{0}.tgz -C {}/{}/".format(
+        run("tar -xzf /tmp/{1}.tgz -C {0}/{1}/".format(
             releases, arch_name
         ))
 
