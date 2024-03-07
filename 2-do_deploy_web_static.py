@@ -29,8 +29,8 @@ def do_deploy(archive_path):
         return False
 
     if run("tar -xzf /tmp/{}.tgz -C {}/".format(arch_name, full_path)).failed:
-        if run("rm -r {}/".format(full_path)).failed:
-            return False
+        run("rm -r {}/".format(full_path))
+        run("rm /tmp/{}.tgz".format(arch_name))
         return False
 
     # deleting the the archive
