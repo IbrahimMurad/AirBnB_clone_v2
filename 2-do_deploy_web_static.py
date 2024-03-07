@@ -24,8 +24,10 @@ def do_deploy(archive_path):
         with cd("/tmp"):
             put(archive_path, '.', use_sudo=True)
         run("mkdir -p {}/".format(full_path))
-        run("tar -xzvf /tmp/{} -C {}/ web_static/*".format(arch_name, full_path))
+        run("tar -xzf /tmp/{} -C {}/".format(arch_name, full_path))
         run("rm /tmp/{}".format(arch_name))
+        run("mv {0}/web_static/* {0}/".format(full_path))
+        run("rm -rf {}/web_static".format(full_path))
         run("rm -rf /data/web_static/current")
         run("ln -sf {}/ /data/web_static/current".format(full_path))
         return True
