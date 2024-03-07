@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """This is a fabfile used for distributes an archive to my web servers"""
-from fabric.api import put, run, env
+from fabric.api import *
 
 
 env.hosts = ['100.25.170.65', '54.172.165.136']
@@ -25,7 +25,7 @@ def do_deploy(archive_path):
         put(local_path=archive_path, remote_path='/tmp/')
 
         # unpacking the archive in a new folder with the same name
-        run("mkdir -p {}/{}/".format(releases, arch_name))
+        run("mkdir -p {0}/{1}/".format(releases, arch_name))
         run("tar -xzf /tmp/{1}.tgz -C {0}/{1}/".format(
             releases, arch_name
         ))
@@ -35,11 +35,11 @@ def do_deploy(archive_path):
 
         # moving the content of web_static in the new folder
         run("mv {0}/{1}/web_static/* {0}/{1}/".format(releases, arch_name))
-        run("rm -rf {}/{}/web_static".format(releases, arch_name))
+        run("rm -rf {0}/{1}/web_static".format(releases, arch_name))
 
         # redirecting the symlink of current to the new folder
         run("rm -rf /data/web_static/current")
-        run("ln -s {}/{}/ /data/web_static/current".format(
+        run("ln -s {0}/{1}/ /data/web_static/current".format(
             releases, arch_name
         ))
 
