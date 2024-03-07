@@ -20,7 +20,7 @@ def do_deploy(archive_path):
     try:
         # path strings
         releases = "/data/web_static/releases/"
-        arch_name = basename(archive_path)
+        arch_name = archive_path.split("/")[-1]
         no_extension = arch_name.split(".")[0]
         full_path = releases + no_extension
         put(archive_path, '/tmp/')
