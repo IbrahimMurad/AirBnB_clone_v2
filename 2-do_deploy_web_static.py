@@ -22,26 +22,34 @@ def do_deploy(archive_path):
         arch_name = archive_path.rsplit('/', 1)[1].split('.')[0]
 
         # transfering the archive to the servers
-        put(local_path=archive_path, remote_path='/tmp/')
+        if put(local_path=archive_path, remote_path='/tmp/').failed:
+            raise Exception
 
         # unpacking the archive in a new folder with the same name
-        run("mkdir -p {0}/{1}/".format(releases, arch_name))
-        run("tar -xzf /tmp/{1}.tgz -C {0}/{1}/".format(
+        if run("mkdir -p {0}/{1}/".format(releases, arch_name)).failed:
+            raise Exception
+        if run("tar -xzf /tmp/{1}.tgz -C {0}/{1}/".format(
             releases, arch_name
-        ))
+        )).failed:
+            raise Exception
 
         # deleting the the archive
-        run("rm /tmp/{}.tgz".format(arch_name))
+        if run("rm /tmp/{}.tgz".format(arch_name)).failed:
+            raise Exception
 
         # moving the content of web_static in the new folder
-        run("mv {0}/{1}/web_static/* {0}/{1}/".format(releases, arch_name))
-        run("rm -rf {0}/{1}/web_static".format(releases, arch_name))
+        if run("mv {0}/{1}/web_static/* {0}/{1}/".format(releases, arch_name)).failed:
+            raise Exception
+        if run("rm -rf {0}/{1}/web_static".format(releases, arch_name)).failed:
+            raise Exception
 
         # redirecting the symlink of current to the new folder
-        run("rm -rf /data/web_static/current")
-        run("ln -s {0}/{1}/ /data/web_static/current".format(
+        if run("rm -rf /data/web_static/current").failed:
+            raise Exception
+        if run("ln -s {0}/{1}/ /data/web_static/current".format(
             releases, arch_name
-        ))
+        )).failed:
+            raise Exception
 
         print("New version deployed!")
         return True
