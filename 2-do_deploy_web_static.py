@@ -11,7 +11,7 @@ def do_deploy(archive_path):
     """ distributes the .tgz archive of my web static\
  to my web servers"""
 
-    if not os.path.isfile(archive_path):
+    if not os.path.exists(archive_path):
         return False
 
     # path strings
