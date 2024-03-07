@@ -30,8 +30,7 @@ def do_deploy(archive_path):
     if run("mkdir -p {0}/{1}/".format(releases, arch_name)).failed:
         return False
     if run("tar -xzf /tmp/{1}.tgz -C {0}/{1}/".format(
-       releases, arch_name
-    )).failed:
+       releases, arch_name)).failed:
         return False
 
     # deleting the the archive
@@ -39,7 +38,8 @@ def do_deploy(archive_path):
         return False
 
     # moving the content of web_static in the new folder
-    if run("mv {0}/{1}/web_static/* {0}/{1}/".format(releases, arch_name)).failed:
+    if run("mv {0}/{1}/web_static/* {0}/{1}/".format(
+       releases, arch_name)).failed:
         return False
     if run("rm -rf {0}/{1}/web_static".format(releases, arch_name)).failed:
         return False
