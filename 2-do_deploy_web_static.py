@@ -18,7 +18,7 @@ def do_deploy(archive_path):
         # path strings
         releases = "/data/web_static/releases"
         arch_name = os.path.basename(archive_path)
-        no_extension = arch_name.split('.')[0]
+        no_extension = arch_name.split(".")[0]
         full_path = "{}/{}".format(releases, no_extension)
         put(archive_path, '/tmp/')
         run("mkdir -p {}/".format(full_path))
@@ -28,7 +28,6 @@ def do_deploy(archive_path):
         run("rm -rf {}/web_static".format(full_path))
         run("rm -rf /data/web_static/current")
         run("ln -s {}/ /data/web_static/current".format(full_path))
-        print("New version deployed!")
         return True
     except Exception:
         return False
