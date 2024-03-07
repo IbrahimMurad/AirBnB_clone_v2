@@ -3,7 +3,7 @@
 This is a fabfile used for distributes an archive to my web servers
 """
 
-from fabric.api import put, run, env
+from fabric.api import put, run, env, cd
 env.hosts = ['100.25.170.65', '54.172.165.136']
 
 
@@ -21,7 +21,8 @@ def do_deploy(archive_path):
         arch_name = archive_path.split("/")[-1]
         no_extension = arch_name.split(".")[0]
         full_path = releases + no_extension
-        put(archive_path, '/tmp/', use_sudo=True)
+        with cd("/tmp"):
+            put(archive_path, '.', use_sudo=True)
         run("mkdir -p {}/".format(full_path))
         run("tar -xzf /tmp/{} -C {}/".format(arch_name, full_path))
         run("rm /tmp/{}".format(arch_name))
