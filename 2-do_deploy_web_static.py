@@ -24,9 +24,6 @@ def do_deploy(archive_path):
         return False
 
     # unpacking the archive in a new folder with the same name
-    if run("rm -r {}/".format(full_path)).failed:
-        return False
-
     if run("mkdir -p {}/".format(full_path)).failed:
         return False
 
