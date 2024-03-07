@@ -16,10 +16,10 @@ def do_deploy(archive_path):
 
     try:
         # path strings
-        releases = "/data/web_static/releases"
+        releases = "/data/web_static/releases/"
         arch_name = os.path.basename(archive_path)
         no_extension = arch_name.split(".")[0]
-        full_path = "{}/{}".format(releases, no_extension)
+        full_path = releases + no_extension
         put(archive_path, '/tmp/')
         run("mkdir -p {}/".format(full_path))
         run("tar -xzf /tmp/{} -C {}/".format(arch_name, full_path))
