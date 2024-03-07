@@ -21,7 +21,7 @@ def do_deploy(archive_path):
         arch_name = archive_path.split("/")[-1]
         no_extension = arch_name.split(".")[0]
         full_path = releases + no_extension
-        put(archive_path, '/tmp/')
+        put(archive_path, '/tmp/', use_sudo=True)
         run("mkdir -p {}/".format(full_path))
         run("tar -xzf /tmp/{} -C {}/".format(arch_name, full_path))
         run("rm /tmp/{}".format(arch_name))
@@ -30,5 +30,5 @@ def do_deploy(archive_path):
         run("rm -rf /data/web_static/current")
         run("ln -sf {}/ /data/web_static/current".format(full_path))
         return True
-    except:
+    except Exception:
         return False
