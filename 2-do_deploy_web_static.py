@@ -16,17 +16,19 @@ def do_deploy(archive_path):
         return False
 
     try:
-        file_n = archive_path.split("/")[-1]
-        no_ext = file_n.split(".")[0]
-        path = "/data/web_static/releases/"
+        # path strings
+        releases = "/data/web_static/releases/"
+        arch_name = archive_path.split("/")[-1]
+        no_extension = arch_name.split(".")[0]
+        full_path = releases + no_extension
         put(archive_path, '/tmp/')
-        run('mkdir -p {}{}/'.format(path, no_ext))
-        run('tar -xzf /tmp/{} -C {}{}/'.format(file_n, path, no_ext))
-        run('rm /tmp/{}'.format(file_n))
-        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, no_ext))
-        run('rm -rf {}{}/web_static'.format(path, no_ext))
-        run('rm -rf /data/web_static/current')
-        run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
+        run("mkdir -p {}/".format(full_path))
+        run("tar -xzf /tmp/{} -C {}/".format(arch_name, full_path))
+        run("rm /tmp/{}".format(arch_name))
+        run("mv {0}/web_static/* {0}/".format(full_path))
+        run("rm -rf {}/web_static".format(full_path))
+        run("rm -rf /data/web_static/current")
+        run("ln -s {}/ /data/web_static/current".format(full_path))
         return True
     except:
         return False
