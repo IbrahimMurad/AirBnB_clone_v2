@@ -13,7 +13,7 @@ def do_deploy(archive_path):
  to my web servers"""
 
     import os
-    if not os.path.exists(archive_path):
+    if not os.path.isfile(archive_path):
         return False
 
     # path strings
@@ -25,6 +25,8 @@ def do_deploy(archive_path):
         return False
 
     # unpacking the archive in a new folder with the same name
+    if run("rm -r {0}/{1}/".format(releases, arch_name)).failed:
+        return False
     if run("mkdir -p {0}/{1}/".format(releases, arch_name)).failed:
         return False
     if run("tar -xzf /tmp/{1}.tgz -C {0}/{1}/".format(
