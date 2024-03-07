@@ -1,6 +1,9 @@
 #!/usr/bin/python3
-"""This is a fabfile used for distributes an archive to my web servers"""
-import os
+"""
+This is a fabfile used for distributes an archive to my web servers
+"""
+
+from os.path import exists, basename
 from fabric.api import put, run, env
 
 
@@ -11,13 +14,13 @@ def do_deploy(archive_path):
     """ distributes the .tgz archive of my web static\
  to my web servers"""
 
-    if not os.path.exists(archive_path):
+    if exists(archive_path) is False:
         return False
 
     try:
         # path strings
         releases = "/data/web_static/releases/"
-        arch_name = os.path.basename(archive_path)
+        arch_name = basename(archive_path)
         no_extension = arch_name.split(".")[0]
         full_path = releases + no_extension
         put(archive_path, '/tmp/')
@@ -29,5 +32,5 @@ def do_deploy(archive_path):
         run("rm -rf /data/web_static/current")
         run("ln -s {}/ /data/web_static/current".format(full_path))
         return True
-    except Exception:
+    except:
         return False
