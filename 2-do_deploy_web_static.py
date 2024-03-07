@@ -24,10 +24,13 @@ def do_deploy(archive_path):
         return False
 
     # unpacking the archive in a new folder with the same name
+
     if run("mkdir -p {}/".format(full_path)).failed:
         return False
 
     if run("tar -xzf /tmp/{}.tgz -C {}/".format(arch_name, full_path)).failed:
+        if run("rm -r {}/".format(full_path)).failed:
+            return False
         return False
 
     # deleting the the archive
