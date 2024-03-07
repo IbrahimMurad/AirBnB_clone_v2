@@ -17,18 +17,19 @@ def do_deploy(archive_path):
     try:
         # path strings
         releases = "/data/web_static/releases"
-        arch_name = archive_path.split('/')[-1].split('.')[0]
-        full_path = "{}/{}".format(releases, arch_name)
+        arch_name = archive_path.split('/')[-1]
+        no_extension = arch_name.split('.')[0]
+        full_path = "{}/{}".format(releases, no_extension)
 
         # transfering the archive to the servers
-        put(local_path=archive_path, remote_path='/tmp/')
+        put(archive_path, '/tmp/')
 
         # unpacking the archive in a new folder with the same name
         run("mkdir -p {}/".format(full_path))
-        run("tar -xzf /tmp/{}.tgz -C {}/".format(arch_name, full_path))
+        run("tar -xzf /tmp/{} -C {}/".format(arch_name, full_path))
 
         # deleting the the archive
-        run("rm /tmp/{}.tgz".format(arch_name))
+        run("rm /tmp/{}".format(arch_name))
 
         # moving the content of web_static in the new folder
         run("mv {0}/web_static/* {0}/".format(full_path))
