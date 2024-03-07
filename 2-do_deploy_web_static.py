@@ -17,18 +17,20 @@ def do_deploy(archive_path):
     # path strings
     releases = "/data/web_static/releases"
     arch_name = archive_path.rsplit('/', 1)[1].split('.')[0]
+    full_path = "{}/{}".format(releases, arch_name)
 
     # transfering the archive to the servers
     if put(local_path=archive_path, remote_path='/tmp/').failed:
         return False
 
     # unpacking the archive in a new folder with the same name
-    if run("rm -r {0}/{1}/".format(releases, arch_name)).failed:
+    if run("rm -r {}/".format(full_path)).failed:
         return False
-    if run("mkdir -p {0}/{1}/".format(releases, arch_name)).failed:
+
+    if run("mkdir -p {}/".format(full_path)).failed:
         return False
-    if run("tar -xzf /tmp/{1}.tgz -C {0}/{1}/".format(
-       releases, arch_name)).failed:
+
+    if run("tar -xzf /tmp/{}.tgz -C {}/".format(arch_name, full_path)).failed:
         return False
 
     # deleting the the archive
@@ -36,18 +38,17 @@ def do_deploy(archive_path):
         return False
 
     # moving the content of web_static in the new folder
-    if run("mv {0}/{1}/web_static/* {0}/{1}/".format(
-       releases, arch_name)).failed:
+    if run("mv {0}/web_static/* {0}/".format(full_path)).failed:
         return False
-    if run("rm -rf {0}/{1}/web_static".format(releases, arch_name)).failed:
+
+    if run("rm -rf {}/web_static".format(full_path)).failed:
         return False
 
     # redirecting the symlink of current to the new folder
     if run("rm -rf /data/web_static/current").failed:
         return False
-    if run("ln -s {0}/{1}/ /data/web_static/current".format(
-        releases, arch_name
-    )).failed:
+
+    if run("ln -s {}/ /data/web_static/current".format(full_path)).failed:
         return False
 
     print("New version deployed!")
