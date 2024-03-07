@@ -3,7 +3,6 @@
 This is a fabfile used for distributes an archive to my web servers
 """
 
-from os.path import exists
 from fabric.api import put, run, env
 env.hosts = ['100.25.170.65', '54.172.165.136']
 
@@ -12,6 +11,7 @@ def do_deploy(archive_path):
     """ distributes the .tgz archive of my web static\
  to my web servers"""
 
+    from os.path import exists
     if exists(archive_path) is False:
         return False
 
