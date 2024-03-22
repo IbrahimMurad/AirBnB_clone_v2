@@ -50,7 +50,7 @@ def n_in_temp(n):
 @app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
 def even_or_odd(n):
     """ Returns a HTML page only if n is an integer """
-    odd_or_even = "odd"
+    odd_even = "odd"
     if n % 2 == 0:
         odd_even = "even"
     return render_template('6-number_odd_or_even.html', n=n, o_or_e=odd_even)
