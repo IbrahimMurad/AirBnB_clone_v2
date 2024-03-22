@@ -2,6 +2,14 @@
 
 In this stage, we use Flask to setup our web app.
 
+- [hello HBNB](http://0.0.0.0:5000)
+- [HBNB](http://0.0.0.0:5000/hbnb)
+- [C is ...](http://0.0.0.0:5000/c/<text>) where "< text >" is any text.
+- [Python ...](http://0.0.0.0:5000/python/<text>) where < text > is any text or empty
+- [n is a number](http://0.0.0.0:5000/number/<n>) where < n > is an integer
+
+
+
 <center> <h1>AirBnB clone - MySQL</h1> </center>
 
 This repository contains the third stage of a student project to build a clone of the AirBnB website. This stage replaces the file storage by a Database storage and maps models to a table in database by using an O.R.M.
