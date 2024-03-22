@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 """
-This is my first web app using flask
+This is my first dir in my web app using flask
 """
-from flask import Flask
 
+
+from flask import Flask
 app = Flask(__name__)
 
 
@@ -14,7 +15,7 @@ def hello_HBNB():
 
 
 @app.route("/hbnb", strict_slashes=False)
-def hello_HBNB():
+def HBNB():
     """ Returns an html page that displays HBNB """
     return "HBNB"
 
