@@ -19,6 +19,7 @@ def HBNB():
     """ Returns an html page that displays HBNB """
     return "HBNB"
 
+
 @app.route("/c/<text>", strict_slashes=False)
 def C_is_fun(text):
     """ Returns "C" followed by the value of the text variable """
