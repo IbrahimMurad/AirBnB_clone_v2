@@ -52,8 +52,9 @@ def even_or_odd(n):
     """ Returns a HTML page only if n is an integer """
     odd_or_even = "odd"
     if n % 2 == 0:
-        odd_or_even = "even"
-    return render_template('6-number_odd_or_even.html', n=n, odd_or_even=odd_or_even)
+        odd_even = "even"
+    return render_template('6-number_odd_or_even.html', n=n, o_or_e=odd_even)
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port='5000')
