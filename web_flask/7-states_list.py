@@ -18,11 +18,10 @@ def teardown_session(exception):
 def states_list():
     """ Returns an html page that displays hello HBNB! """
     all_states = storage.all(State).values()
-    states = sorted(all_states, key=lambda x: x['name'])
+    states = sorted(all_states, key=lambda x: x.name)
     return render_template("7-states_list.html",
                            states=states)
 
 
 if __name__ == "__main__":
-    print(storage.all(State))
     app.run(host='0.0.0.0', port='5000')
