@@ -42,7 +42,7 @@ all objects depending of the class name cls"""
                     all_obj_dict.update({obj.to_dict()['__class__']
                                          + '.' + obj.id: obj})
         else:
-            _cls_objs = self.__session.query(cls).order_by("name").all()
+            _cls_objs = self.__session.query(cls).all()
             for obj in _cls_objs:
                 all_obj_dict.update({obj.to_dict()['__class__']
                                      + '.' + obj.id: obj})
