@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 @app.teardown_appcontext
 def teardown_session(exception):
+    """removes the current SQLAlchemy Session after each request"""
     storage.close()
 
 @app.route("/states_list", strict_slashes=False)
