@@ -6,7 +6,7 @@ import os
 
 
 class DBStorage:
-    """This class is a second engine for the project"""
+    """ This class is a second engine for the project """
     __engine = None
     __session = None
 
@@ -82,5 +82,5 @@ all objects depending of the class name cls"""
         self.__session = thread_safe_session()
 
     def close(self):
-        """ closes the current session """
+        """closes the current session"""
         self.__session.close()
