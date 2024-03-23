@@ -80,3 +80,7 @@ all objects depending of the class name cls"""
                                            expire_on_commit=False)
         thread_safe_session = orm.scoped_session(Session_factory)
         self.__session = thread_safe_session()
+
+    def close(self):
+        """ closes the current session """
+        self.__session.close()

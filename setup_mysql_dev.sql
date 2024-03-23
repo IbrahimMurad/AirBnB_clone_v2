@@ -1,3 +1,4 @@
+-- Active: 1702391851621@@127.0.0.1@3306
 -- create a new database hbnb_dev_db for AirBnB clone project
 CREATE DATABASE IF NOT EXISTS hbnb_dev_db;
 
