@@ -29,8 +29,12 @@ def cities_in_states():
     """ Returns an html page that displays hello HBNB! """
     all_states = storage.all(State).values()
     states = sorted(all_states, key=lambda x: x.name)
+    states_and_cities = [(
+        x,
+        sorted(x.cities, key=lambda x: x.name)
+        ) for x in all_states]
     return render_template("8-cities_by_states.html",
-                           states=states)
+                           states=states_and_cities)
 
 
 if __name__ == "__main__":
