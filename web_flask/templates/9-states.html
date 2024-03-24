@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HBNB</title>
+    </head>
+    <body>
+    {% if id %}
+        {% if id in states|map(attribute='id')|list%}
+        {% set state = states|selectattr('id', 'equalto', id)|first %}
+        <h1>State: {{state.name}}</h1>
+        <h3>Cities:</h3>
+        <ul>
+        {% for city in state.cities%}
+            <LI>{{city.id}}: <B>{{city.name}}</B></LI>
+        {% endfor %}
+        </ul>
+        {% else %}
+        <h1>Not found!</h1>
+        {% endif %}
+    {% else %}
+        <h1>States</h1>
+        <ul>
+        {% for state in states|sort(attribute='name') %}
+            <LI>{{state.id}}: <B>{{state.name}}</B></LI>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    </body>
+</html>
