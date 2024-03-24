@@ -43,6 +43,8 @@
 	border-radius: 4px;
 
 	overflow-y: auto;
+	position: relative;
+	z-index: 99;
 }
 
 .locations:hover .popover {
@@ -58,9 +60,6 @@ ul {
 	padding: 0px;
 	padding-bottom: 20px;
 }
-
-li {
-}	
 
 h2 {
 	font-size: 16px;
