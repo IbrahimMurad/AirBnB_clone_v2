@@ -14,6 +14,7 @@ def teardown_session(exception):
     """removes the current SQLAlchemy Session after each request"""
     storage.close()
 
+
 @app.route("/states_list", strict_slashes=False)
 def states_list():
     """ Returns an html page that displays hello HBNB! """
