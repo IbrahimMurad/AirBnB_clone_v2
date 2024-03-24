@@ -18,8 +18,7 @@ def teardown_session(exception):
 @app.route("/states_list", strict_slashes=False)
 def states_list():
     """ Returns an html page that displays hello HBNB! """
-    all_states = storage.all(State).values()
-    states = sorted(all_states, key=lambda x: x.name)
+    states = storage.all(State).values()
     return render_template("7-states_list.html",
                            states=states)
 
