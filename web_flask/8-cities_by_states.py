@@ -31,7 +31,7 @@ def cities_in_states():
     states = sorted(all_states, key=lambda x: x.name)
     states_and_cities = [(
         x,
-        sorted(x.cities, key=lambda x: x.name)
+        sorted(x.cities, key=lambda y: y.name)
         ) for x in all_states]
     return render_template("8-cities_by_states.html",
                            states=states_and_cities)
