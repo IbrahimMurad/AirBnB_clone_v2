@@ -6,6 +6,8 @@ from flask import Flask, render_template
 from models import storage
 from models.state import State
 from models.amenity import Amenity
+from models.place import Place
+from models.user import User
 
 app = Flask(__name__)
 
@@ -22,7 +24,9 @@ def hbnb():
     return render_template(
         "100-hbnb.html",
         states=storage.all(State).values(),
-        amenities=storage.all(Amenity).values()
+        amenities=storage.all(Amenity).values(),
+        places=storage.all(Place).values(),
+        users=storage.all(User).values()
         )
 
 
