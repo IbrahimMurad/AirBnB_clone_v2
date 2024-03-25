@@ -39,13 +39,13 @@ all objects depending of the class name cls"""
             for _cls in classes:
                 _cls_objs = self.__session.query(_cls).all()
                 for obj in _cls_objs:
-                    all_obj_dict.update({obj.to_dict()['__class__']
-                                         + '.' + obj.id: obj})
+                    all_obj_dict.update(
+                        {obj.to_dict()['__class__'] + '.' + obj.id: obj})
         else:
             _cls_objs = self.__session.query(cls).all()
             for obj in _cls_objs:
-                all_obj_dict.update({obj.to_dict()['__class__']
-                                     + '.' + obj.id: obj})
+                all_obj_dict.update(
+                    {obj.to_dict()['__class__'] + '.' + obj.id: obj})
         return all_obj_dict
 
     def new(self, obj):
